@@ -1,4 +1,5 @@
 import { greeting } from "TestModule";
+import { BaseCharacter } from "ai/base"
 
 greeting("TypeScript");
 map_key("1", "snippet", "parent.start_runner();");
