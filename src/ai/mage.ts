@@ -1,6 +1,7 @@
 import { greeting } from "TestModule";
 import { BaseCharacter } from "lib/BaseCharacter";
 import { Party } from "lib/Party";
+import { check_potion_stock } from "MyLib";
 
 greeting("TypeScript");
 map_key("1", "snippet", "parent.start_runner();");
@@ -31,6 +32,8 @@ if (character.name == "ZECHS"){
 //show_json(character);
 
 setInterval(function(){
+
+  //check_potion_stock();
 
 	if(character.hp<400 || character.mp<300) use_hp_or_mp();
 	// Uses potions only when the above conditions are met
