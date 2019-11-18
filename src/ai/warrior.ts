@@ -1,4 +1,5 @@
 import { greeting } from "TestModule";
+import { return_to_leader } from "MyLib";
 
 greeting("TypeScript");
 map_key("1", "snippet", "parent.start_runner();");
@@ -13,6 +14,14 @@ setInterval(function(){
 	if(character.hp<400 || character.mp<300) use_hp_or_mp();
 	// Uses potions only when the above conditions are met
 	loot();
+
+	let zechs = get_player("ZECHS");
+
+	return_to_leader(character, zechs, 100);
+
+	//if (parent.distance(character, zechs) >= 100){
+	//	xmove(zechs.x, zechs.y);
+	//}
 
 	if(!attack_mode || character.moving) return;
 

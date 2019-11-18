@@ -91,7 +91,7 @@ declare global {
   var handle_death: () => void;
   function respawn(): void;
   function start_character(name: string, script: string): void;
-  function stop_character(name: string, script: string): void;
+  function stop_character(name: string): void;
   function map_key(key: string, thing: string, arg?: string): void;
   function can_use(skill: SkillName): boolean;
   function can_attack(entity: Entity): boolean;
@@ -117,6 +117,7 @@ declare global {
   function show_json(stuff: any): void;
   function can_move(args: { map: string; x: number; y: number; going_x: number; going_y: number }): boolean;
   function stop(what: string): void;
+  function get_active_characters(): ICharacter[];
 
   function draw_circle(x: number, y: number, radius: number, size?: number, color?: number): Drawing;
   function draw_line(x: number, y: number, x2: number, y2: number, size?: number, color?: number): Drawing;

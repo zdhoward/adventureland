@@ -1,4 +1,5 @@
 import { greeting } from "TestModule";
+import { return_to_leader, go_heal } from "MyLib";
 
 greeting("TypeScript");
 map_key("1", "snippet", "parent.start_runner();");
@@ -6,7 +7,7 @@ map_key("2", "snippet", "parent.stop_runner();");
 map_key("3", "snippet", 'load_code("' + character.ctype + '")');
 game_log("To reload your code, first press 2 to stop the current AI, and then press 3 to reload the code.");
 
-var attack_mode=false;
+var attack_mode=true;
 
 
 setInterval(function(){
@@ -14,6 +15,21 @@ setInterval(function(){
 	if(character.hp<400 || character.mp<300) use_hp_or_mp();
 	// Uses potions only when the above conditions are met
 	loot();
+
+	//get party hp
+	let typhos = get_player("TYPHOS");
+	let zechs = get_player("ZECHS");
+	//heal
+	let party = [zechs, typhos];
+
+	return_to_leader(character, zechs, 140)
+
+	for (var member in party) {
+		if (member.hp < 1000) {
+			go_heal(member);
+		}
+	}
+
 
 	if(!attack_mode || character.moving) return;
 
