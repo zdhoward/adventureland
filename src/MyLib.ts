@@ -23,3 +23,19 @@ export function check_potion_stock() {
     return;
   }
 }
+
+export function spawn_party(leader, party) {
+  for (var member in party) {
+    if member != leader.name {
+      start_character(member);
+    }
+  }
+}
+
+export function logoff_party(leader, party) {
+  for (var member in party) {
+    if member != leader.name {
+      stop_character(member);
+    }
+  }
+}
