@@ -1,7 +1,7 @@
 import { greeting } from "TestModule";
 import { BaseCharacter } from "lib/BaseCharacter";
 import { Party } from "lib/Party";
-import { check_potion_stock, spawn_party, logoff_party } from "MyLib";
+import { check_potion_stock, spawn_party, logoff_party, check_health_and_mana, attack_closest } from "MyLib";
 
 greeting("TypeScript");
 map_key("1", "snippet", "parent.start_runner();");
@@ -36,39 +36,20 @@ spawn_party(character.name, desired_party);
 
 setInterval(function(){
 
+	loot();
+
+	check_health_and_mana(character);
+
+	if (character.moving) return;
+
   //check_potion_stock();
 
-	if(character.hp<400 || character.mp<300) use_hp_or_mp();
+	//if(character.hp<400 || character.mp<300) use_hp_or_mp();
 	// Uses potions only when the above conditions are met
-	loot();
+	//loot();
 
 	if(!attack_mode || character.moving) return;
 
-	var target=get_targeted_monster();
-	if(!target)
-	{
-		target=get_nearest_monster({min_xp:100,max_att:120,path_check:true,no_target:true});
-		// Ensures that your character can walk to the target (path_check) and the target isn't engaging with anyone else (no_target)
-		if(target) change_target(target);
-		else
-		{
-			set_message("No Monsters");
-			return;
-		}
-	}
-
-	if(!in_attack_range(target))
-	{
-		move(
-			character.real_x+(target.real_x-character.real_x)/2,
-			character.real_y+(target.real_y-character.real_y)/2
-			);
-		// Walk half the distance
-	}
-	else if(can_attack(target))
-	{
-		set_message("Attacking");
-		attack(target);
-	}
+	attack_closest(character);
 
 },250);
