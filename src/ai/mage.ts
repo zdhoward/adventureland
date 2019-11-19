@@ -40,7 +40,7 @@ setInterval(function(){
 
 	check_health_and_mana(character);
 
-	if (character.moving) return;
+	//if (character.moving) return;
 
   //check_potion_stock();
 
