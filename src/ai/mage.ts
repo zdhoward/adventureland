@@ -6,13 +6,13 @@ import { check_potion_stock, spawn_party, logoff_party, check_health_and_mana, a
 greeting("TypeScript");
 map_key("1", "snippet", "parent.start_runner();");
 map_key("2", "snippet", "parent.stop_runner();");
-map_key("3", "snippet", 'load_code("' + character.ctype + '")');
-map_key("4", "snipper", 'logoff_party("ZECHS", ["ZECHS", "TYPHOS", "ASHPHOLD"])')
+map_key("3", "snippet", 'load_code("' + character.ctype + '");');
+map_key("4", "snippet", 'stop_character("TYPHOS");stop_character("ASHPHOLD");');
 game_log("To reload your code, first press 2 to stop the current AI, and then press 3 to reload the code.");
 
 var attack_mode=true;
 var leader_mode=true;
-var desired_party=['ZECHS', 'TYPHOS', 'ASHPHOLD'];
+var desired_party=['TYPHOS', 'ASHPHOLD'];
 var party=get_active_characters();
 
 spawn_party(character.name, desired_party);
@@ -38,11 +38,11 @@ setInterval(function(){
 
 	loot();
 
-	check_health_and_mana(character);
+	//check_health_and_mana(character);
 
 	//if (character.moving) return;
 
-  //check_potion_stock();
+  //check_potion_stock(character);
 
 	//if(character.hp<400 || character.mp<300) use_hp_or_mp();
 	// Uses potions only when the above conditions are met

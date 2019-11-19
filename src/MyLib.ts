@@ -11,7 +11,7 @@ export function go_heal(character: Entity) {
   heal(character);
 }
 
-export function check_potion_stock() {
+export function check_potion_stock(character) {
   function item_quantity(name){
     for(var i=0;i<42;i++){
       if(character.items[i] && character.items[i].name==name) return character.items[i].q||0;
@@ -28,17 +28,15 @@ export function check_potion_stock() {
 
 export function spawn_party(leader, party) {
   for (var member in party) {
-    if member != leader.name {
+    if (member != leader.name) {
       start_character(member);
     }
   }
 }
 
-export function logoff_party(leader, party) {
+export function logoff_party(party) {
   for (var member in party) {
-    if member != leader.name {
       stop_character(member);
-    }
   }
 }
 
